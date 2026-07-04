@@ -1,0 +1,33 @@
+# Secrets
+.env
+*.env
+*.key
+*.pem
+*.crt
+*.p12
+*.jks
+kubeconfig*
+config.yaml
+credentials*
+token*
+secrets/
+
+# Logs
+*.log
+logs/
+
+# Node / Angular
+node_modules/
+dist/
+
+# Java / Spring Boot
+target/
+*.jar
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
