@@ -1,77 +1,160 @@
-# DevSecOps CI/CD Pipeline with K3s and OpenBao
+# \# DevSecOps CI/CD Pipeline with K3s and OpenBao
 
-## Overview
+# 
 
-This project presents the design and implementation of a secure DevSecOps CI/CD pipeline adapted to a banking context.
+# !\[DevSecOps](https://img.shields.io/badge/DevSecOps-CI%2FCD-blue)
 
-The solution integrates security controls throughout the software delivery lifecycle, from code analysis to deployment, vulnerability tracking, secret management and monitoring.
+# !\[Kubernetes](https://img.shields.io/badge/Kubernetes-K3s-blue)
 
-## Main Objectives
+# !\[Security](https://img.shields.io/badge/Security-Automation-red)
 
-- Automate the CI/CD pipeline using GitLab CI.
-- Integrate security scans into the delivery process.
-- Detect vulnerabilities using SAST, SCA, Secret Detection and DAST.
-- Deploy the application securely on a K3s Kubernetes cluster.
-- Manage secrets using OpenBao.
-- Track vulnerabilities through GitLab Issues, Jira and DefectDojo.
-- Monitor the infrastructure using Prometheus, Grafana, Loki and Alertmanager.
-- Validate a blocking Security Gate scenario.
+# !\[Monitoring](https://img.shields.io/badge/Monitoring-Prometheus%20%7C%20Grafana-green)
 
-## Technologies Used
+# 
 
-| Area | Tools |
-|---|---|
-| CI/CD | GitLab CI, GitLab Runner |
-| Containerization | Docker |
-| Orchestration | Kubernetes, K3s |
-| SAST | SonarQube, Semgrep |
-| SCA | Snyk, Trivy |
-| Secret Detection | GitLab Secret Detection, Gitleaks |
-| DAST | OWASP ZAP |
-| Secret Management | OpenBao |
-| Vulnerability Management | GitLab Issues, Jira, DefectDojo |
-| Monitoring | Prometheus, Grafana, Loki, Alertmanager |
+# \## Overview
 
-## Architecture
+# 
 
-The project is based on a hybrid infrastructure composed of:
+# This project presents the design and implementation of a secure DevSecOps CI/CD pipeline adapted to a banking context.
 
-- A local VM for GitLab Runner and Docker.
-- A cloud VM hosting the K3s cluster.
-- A security VM hosting OpenBao, OWASP ZAP and DefectDojo.
-- A monitoring VM hosting Prometheus, Grafana, Loki and Alertmanager.
-- Secure communication between environments using a private VPN network.
+# 
 
-## CI/CD Pipeline
+# The solution integrates security throughout the software delivery lifecycle, from code analysis to deployment, vulnerability tracking, secret management and monitoring.
 
-The pipeline includes the following stages:
+# 
 
-1. Static Application Security Testing
-2. Software Composition Analysis
-3. Build
-4. Container packaging
-5. Secret detection
-6. Deployment to K3s
-7. Dynamic Application Security Testing
-8. Security reporting
-9. Secret lifecycle monitoring
+# \## Main Objectives
 
-## Security Gate Validation
+# 
 
-A blocking Security Gate was implemented using Gitleaks.
+# \- Automate the CI/CD pipeline using GitLab CI.
 
-When a fake secret is detected in the source code, the pipeline fails automatically and prevents the deployment process.
+# \- Integrate security scans into the delivery process.
 
-After removing the exposed secret, the pipeline is relaunched successfully.
+# \- Detect vulnerabilities using SAST, SCA, Secret Detection and DAST.
 
-This validates the transition from observation mode to an active blocking security control.
+# \- Deploy the application securely on a K3s Kubernetes cluster.
 
-## Project Value
+# \- Manage secrets using OpenBao.
 
-This project demonstrates a complete DevSecOps approach by combining automation, security, deployment, secret management, vulnerability tracking and monitoring in a realistic environment.
+# \- Track vulnerabilities using GitLab Issues, Jira and DefectDojo.
 
-## Author
+# \- Monitor the infrastructure using Prometheus, Grafana, Loki and Alertmanager.
 
-Chiheb Marzouk  
-Junior DevSecOps Engineer  
-CI/CD • Kubernetes • Docker • OpenBao • Security Automation
+# \- Validate a blocking Security Gate scenario.
+
+# 
+
+# \## Project Architecture
+
+# 
+
+# The project is based on a hybrid infrastructure composed of:
+
+# 
+
+# \- Local VM for GitLab Runner and Docker.
+
+# \- Cloud VM hosting the K3s Kubernetes cluster.
+
+# \- Security VM hosting OpenBao, OWASP ZAP and DefectDojo.
+
+# \- Monitoring VM hosting Prometheus, Grafana, Loki and Alertmanager.
+
+# \- Secure communication between environments using a private VPN network.
+
+# 
+
+# \## Visual Overview
+
+# 
+
+# Main project diagrams are available here:
+
+# 
+
+# \[Project Visuals](docs/visuals.md)
+
+# 
+
+# \## CI/CD Pipeline
+
+# 
+
+# The pipeline includes the following stages:
+
+# 
+
+# 1\. Static Application Security Testing
+
+# 2\. Software Composition Analysis
+
+# 3\. Build
+
+# 4\. Container packaging
+
+# 5\. Secret detection
+
+# 6\. Deployment to K3s
+
+# 7\. Dynamic Application Security Testing
+
+# 8\. Security reporting
+
+# 9\. Secret lifecycle monitoring
+
+# 
+
+# \## Technologies Used
+
+# 
+
+# | Area | Tools |
+
+# |---|---|
+
+# | CI/CD | GitLab CI, GitLab Runner |
+
+# | Containerization | Docker |
+
+# | Orchestration | Kubernetes, K3s |
+
+# | SAST | SonarQube, Semgrep |
+
+# | SCA | Snyk, Trivy |
+
+# | Secret Detection | GitLab Secret Detection, Gitleaks |
+
+# | DAST | OWASP ZAP |
+
+# | Secret Management | OpenBao |
+
+# | Vulnerability Management | GitLab Issues, Jira, DefectDojo |
+
+# | Monitoring | Prometheus, Grafana, Loki, Alertmanager |
+
+# 
+
+# \## Repository Structure
+
+# 
+
+# ```text
+
+# .
+
+# ├── ci/             # Sanitized GitLab CI/CD pipeline examples
+
+# ├── k8s/            # Kubernetes K3s deployment manifests
+
+# ├── openbao/        # OpenBao policies and secret management examples
+
+# ├── monitoring/     # Prometheus, Grafana and Alertmanager examples
+
+# ├── scripts/        # Automation scripts
+
+# ├── examples/       # Environment variable examples
+
+# └── docs/           # Project documentation and diagrams
+
