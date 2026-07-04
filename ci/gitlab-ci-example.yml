@@ -1,0 +1,100 @@
+stages:
+  - sast
+  - sca
+  - build
+  - package
+  - secrets
+  - deploy
+  - dast
+  - reporting
+  - monitoring
+
+# Static Application Security Testing
+sonarqube_scan:
+  stage: sast
+  image: maven:3.9-eclipse-temurin-17
+  script:
+    - echo "Running SonarQube analysis..."
+    - echo "mvn verify sonar:sonar"
+  allow_failure: true
+
+semgrep_scan:
+  stage: sast
+  image: semgrep/semgrep
+  script:
+    - echo "Running Semgrep scan..."
+    - echo "semgrep scan --json"
+  allow_failure: true
+
+# Software Composition Analysis
+snyk_scan:
+  stage: sca
+  image: node:20
+  script:
+    - echo "Running Snyk dependency scan..."
+    - echo "snyk test"
+  allow_failure: true
+
+trivy_fs_scan:
+  stage: sca
+  image: aquasec/trivy:latest
+  script:
+    - echo "Running Trivy filesystem scan..."
+    - echo "trivy fs ."
+  allow_failure: true
+
+# Build
+build_application:
+  stage: build
+  image: docker:latest
+  script:
+    - echo "Building backend and frontend..."
+
+# Package
+docker_package:
+  stage: package
+  image: docker:latest
+  script:
+    - echo "Building and pushing Docker images to registry..."
+
+# Secret Detection
+gitleaks_scan:
+  stage: secrets
+  image: zricethezav/gitleaks:latest
+  script:
+    - echo "Running Gitleaks secret detection..."
+    - echo "gitleaks detect"
+  allow_failure: false
+
+# Deployment
+deploy_to_k3s:
+  stage: deploy
+  image: bitnami/kubectl:latest
+  script:
+    - echo "Deploying application to K3s cluster..."
+    - echo "kubectl apply -f k8s/"
+  environment:
+    name: staging
+
+# Dynamic Application Security Testing
+zap_baseline_scan:
+  stage: dast
+  image: zaproxy/zap-stable
+  script:
+    - echo "Running OWASP ZAP baseline scan..."
+    - echo "zap-baseline.py -t https://example.com"
+
+# Reporting
+security_reporting:
+  stage: reporting
+  image: alpine:latest
+  script:
+    - echo "Creating security reports..."
+    - echo "Sending findings to GitLab Issues, Jira and DefectDojo"
+
+# Secret lifecycle monitoring
+secret_lifecycle_monitor:
+  stage: monitoring
+  image: alpine:latest
+  script:
+    - echo "Checking secret expiration and rotation status..."
