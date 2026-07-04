@@ -1,160 +1,128 @@
-# \# DevSecOps CI/CD Pipeline with K3s and OpenBao
+\# DevSecOps CI/CD Pipeline with K3s and OpenBao
 
-# 
 
-# !\[DevSecOps](https://img.shields.io/badge/DevSecOps-CI%2FCD-blue)
 
-# !\[Kubernetes](https://img.shields.io/badge/Kubernetes-K3s-blue)
+\## Overview
 
-# !\[Security](https://img.shields.io/badge/Security-Automation-red)
 
-# !\[Monitoring](https://img.shields.io/badge/Monitoring-Prometheus%20%7C%20Grafana-green)
 
-# 
+This project presents the design and implementation of a secure DevSecOps CI/CD pipeline adapted to a banking context.
 
-# \## Overview
 
-# 
 
-# This project presents the design and implementation of a secure DevSecOps CI/CD pipeline adapted to a banking context.
+The solution integrates security throughout the software delivery lifecycle, from code analysis to deployment, vulnerability tracking, secret management and monitoring.
 
-# 
 
-# The solution integrates security throughout the software delivery lifecycle, from code analysis to deployment, vulnerability tracking, secret management and monitoring.
 
-# 
+\## Main Objectives
 
-# \## Main Objectives
 
-# 
 
-# \- Automate the CI/CD pipeline using GitLab CI.
+\- Automate the CI/CD pipeline using GitLab CI.
 
-# \- Integrate security scans into the delivery process.
+\- Integrate security scans into the delivery process.
 
-# \- Detect vulnerabilities using SAST, SCA, Secret Detection and DAST.
+\- Detect vulnerabilities using SAST, SCA, Secret Detection and DAST.
 
-# \- Deploy the application securely on a K3s Kubernetes cluster.
+\- Deploy the application securely on a K3s Kubernetes cluster.
 
-# \- Manage secrets using OpenBao.
+\- Manage secrets using OpenBao.
 
-# \- Track vulnerabilities using GitLab Issues, Jira and DefectDojo.
+\- Track vulnerabilities using GitLab Issues, Jira and DefectDojo.
 
-# \- Monitor the infrastructure using Prometheus, Grafana, Loki and Alertmanager.
+\- Monitor the infrastructure using Prometheus, Grafana, Loki and Alertmanager.
 
-# \- Validate a blocking Security Gate scenario.
+\- Validate a blocking Security Gate scenario.
 
-# 
 
-# \## Project Architecture
 
-# 
+\## Visual Overview
 
-# The project is based on a hybrid infrastructure composed of:
 
-# 
 
-# \- Local VM for GitLab Runner and Docker.
+The main project diagrams are available here:
 
-# \- Cloud VM hosting the K3s Kubernetes cluster.
 
-# \- Security VM hosting OpenBao, OWASP ZAP and DefectDojo.
 
-# \- Monitoring VM hosting Prometheus, Grafana, Loki and Alertmanager.
+\[Project Visuals](docs/visuals.md)
 
-# \- Secure communication between environments using a private VPN network.
 
-# 
 
-# \## Visual Overview
+\## Technologies Used
 
-# 
 
-# Main project diagrams are available here:
 
-# 
+| Area | Tools |
 
-# \[Project Visuals](docs/visuals.md)
+|---|---|
 
-# 
+| CI/CD | GitLab CI, GitLab Runner |
 
-# \## CI/CD Pipeline
+| Containerization | Docker |
 
-# 
+| Orchestration | Kubernetes, K3s |
 
-# The pipeline includes the following stages:
+| SAST | SonarQube, Semgrep |
 
-# 
+| SCA | Snyk, Trivy |
 
-# 1\. Static Application Security Testing
+| Secret Detection | GitLab Secret Detection, Gitleaks |
 
-# 2\. Software Composition Analysis
+| DAST | OWASP ZAP |
 
-# 3\. Build
+| Secret Management | OpenBao |
 
-# 4\. Container packaging
+| Vulnerability Management | GitLab Issues, Jira, DefectDojo |
 
-# 5\. Secret detection
+| Monitoring | Prometheus, Grafana, Loki, Alertmanager |
 
-# 6\. Deployment to K3s
 
-# 7\. Dynamic Application Security Testing
 
-# 8\. Security reporting
+\## Repository Structure
 
-# 9\. Secret lifecycle monitoring
 
-# 
 
-# \## Technologies Used
+```text
 
-# 
+.
 
-# | Area | Tools |
+├── ci/             # GitLab CI/CD pipeline examples
 
-# |---|---|
+├── k8s/            # Kubernetes K3s deployment manifests
 
-# | CI/CD | GitLab CI, GitLab Runner |
+├── openbao/        # OpenBao policies and secret management examples
 
-# | Containerization | Docker |
+├── monitoring/     # Monitoring configuration examples
 
-# | Orchestration | Kubernetes, K3s |
+├── scripts/        # Automation scripts
 
-# | SAST | SonarQube, Semgrep |
+├── examples/       # Environment variable examples
 
-# | SCA | Snyk, Trivy |
+└── docs/           # Project documentation and diagrams
 
-# | Secret Detection | GitLab Secret Detection, Gitleaks |
+Security Gate Validation
 
-# | DAST | OWASP ZAP |
+A blocking Security Gate was implemented using Gitleaks.
 
-# | Secret Management | OpenBao |
+When a fake secret is detected in the source code, the pipeline fails automatically and prevents the deployment process.
 
-# | Vulnerability Management | GitLab Issues, Jira, DefectDojo |
+After removing the exposed secret, the pipeline is relaunched successfully.
 
-# | Monitoring | Prometheus, Grafana, Loki, Alertmanager |
+This validates the transition from observation mode to blocking mode.
 
-# 
+Security Notice
 
-# \## Repository Structure
+This repository contains a sanitized portfolio version of the project.
 
-# 
+Sensitive information such as real tokens, passwords, internal IP addresses, private domains and confidential configuration values were removed or replaced with example values.
 
-# ```text
+Project Value
 
-# .
+This project demonstrates a complete DevSecOps approach by combining automation, security testing, Kubernetes deployment, secret management, vulnerability tracking and monitoring.
 
-# ├── ci/             # Sanitized GitLab CI/CD pipeline examples
+Author
 
-# ├── k8s/            # Kubernetes K3s deployment manifests
-
-# ├── openbao/        # OpenBao policies and secret management examples
-
-# ├── monitoring/     # Prometheus, Grafana and Alertmanager examples
-
-# ├── scripts/        # Automation scripts
-
-# ├── examples/       # Environment variable examples
-
-# └── docs/           # Project documentation and diagrams
+Chiheb Marzouk
+Junior DevSecOps Engineer
+CI/CD • Kubernetes • Docker • OpenBao • Security Automation
 
